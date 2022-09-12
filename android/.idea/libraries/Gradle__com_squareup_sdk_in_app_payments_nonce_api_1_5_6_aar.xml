@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.squareup.sdk.in-app-payments:nonce-api:1.5.6@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/0ebd6e422c38924cb40346913884aa1a/transformed/jetified-nonce-api-1.5.6/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/0ebd6e422c38924cb40346913884aa1a/transformed/jetified-nonce-api-1.5.6/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/0ebd6e422c38924cb40346913884aa1a/transformed/jetified-nonce-api-1.5.6/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.sdk.in-app-payments/nonce-api/1.5.6/e2f4775167a7810a429647b4886e1841be65ee4/nonce-api-1.5.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

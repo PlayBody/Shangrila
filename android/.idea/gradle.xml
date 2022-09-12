@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/external_path-1.0.3/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/file_picker-5.0.1/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-1.21.1/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_database-9.1.3/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging-12.0.3/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_app_badger-1.4.0/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_downloader-1.8.3/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications-9.1.4/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-2.0.7/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/fluttertoast-8.0.9/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_android-4.1.0/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/google_maps_flutter_android-2.3.0/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker_android-0.8.5+2/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/location-4.4.0/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/notification_permissions-0.6.1/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/package_info-2.0.2/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.20/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/qr_code_scanner-1.0.1/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_android-2.0.12/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/square_in_app_payments-1.7.5/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_android-6.0.17/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/video_player_android-2.3.9/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/video_thumbnail-0.5.2/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/wakelock-0.6.2/android" />
+            <option value="$PROJECT_DIR$/../../../../../../Mobile_Work/flutter_windows_3.0.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter_android-2.10.0/android" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

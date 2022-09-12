@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.squareup.sdk.in-app-payments:buyer-verification:1.5.6@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/30415b7b4e2ac44af3c999c03c0dc5ff/transformed/jetified-buyer-verification-1.5.6/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/30415b7b4e2ac44af3c999c03c0dc5ff/transformed/jetified-buyer-verification-1.5.6/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/30415b7b4e2ac44af3c999c03c0dc5ff/transformed/jetified-buyer-verification-1.5.6/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.sdk.in-app-payments/buyer-verification/1.5.6/2799b7808c8697bfd90587e2b6b6085c94ad578d/buyer-verification-1.5.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

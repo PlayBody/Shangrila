@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.squareup.sdk.in-app-payments:in-app-payments:1.5.6@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/7220a1fea11b63f0d07fad488aa901d5/transformed/jetified-in-app-payments-1.5.6/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7220a1fea11b63f0d07fad488aa901d5/transformed/jetified-in-app-payments-1.5.6/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7220a1fea11b63f0d07fad488aa901d5/transformed/jetified-in-app-payments-1.5.6/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.sdk.in-app-payments/in-app-payments/1.5.6/1248450f06e5c3cbf9ad3f6778e0a4e44f2d44b6/in-app-payments-1.5.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

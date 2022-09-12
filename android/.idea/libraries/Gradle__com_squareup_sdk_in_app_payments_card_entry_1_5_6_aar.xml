@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.squareup.sdk.in-app-payments:card-entry:1.5.6@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/0eb55e89369666c3f2e295a441faa25c/transformed/jetified-card-entry-1.5.6/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/0eb55e89369666c3f2e295a441faa25c/transformed/jetified-card-entry-1.5.6/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/0eb55e89369666c3f2e295a441faa25c/transformed/jetified-card-entry-1.5.6/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.sdk.in-app-payments/card-entry/1.5.6/1110ae7ea3c169e4301b40d4e578c3f85db55137/card-entry-1.5.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

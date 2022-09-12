@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.squareup.sdk.in-app-payments:secure-remote-commerce:1.5.6@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/1842f2e710de6d389510eb96e8debf1c/transformed/jetified-secure-remote-commerce-1.5.6/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/1842f2e710de6d389510eb96e8debf1c/transformed/jetified-secure-remote-commerce-1.5.6/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/1842f2e710de6d389510eb96e8debf1c/transformed/jetified-secure-remote-commerce-1.5.6/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.sdk.in-app-payments/secure-remote-commerce/1.5.6/723a34f25e1786f4703ba16dafa342113c9e3867/secure-remote-commerce-1.5.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
