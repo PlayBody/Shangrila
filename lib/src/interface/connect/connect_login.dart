@@ -69,7 +69,7 @@ class _ConnectLogin extends State<ConnectLogin> {
 
     if (user != null) {
       globals.userId = user.userId;
-      globals.userName = user.userFirstName + ' ' + user.userLastName;
+      globals.userName = user.userNick;
       await ClUser()
           .updateDeviceToken(context, user.userId, globals.connectDeviceToken);
 

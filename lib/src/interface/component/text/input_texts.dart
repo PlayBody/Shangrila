@@ -48,6 +48,9 @@ class TextInputNormal extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Color(0xFFbebebe)),
         ),
+        disabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Color(0xFFbebebe)),
+        ),
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.red),
         ),

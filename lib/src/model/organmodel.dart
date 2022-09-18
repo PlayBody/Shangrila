@@ -1,7 +1,7 @@
 class OrganModel {
   final String organId;
   final String organName;
-  final bool isNoReserve;
+  final String isNoReserve;
   final String? organAddress;
   final String? organPhone;
   final String? organComment;
@@ -29,8 +29,8 @@ class OrganModel {
         organId: json['organ_id'],
         organName: json['organ_name'],
         isNoReserve: json['is_no_reserve'] == null
-            ? false
-            : json['is_no_reserve'].toString() == '1',
+            ? '0'
+            : json['is_no_reserve'].toString(),
         organAddress: json['address'] == null ? '' : json['address'],
         organPhone: json['phone'],
         organComment: json['comment'] ?? '',

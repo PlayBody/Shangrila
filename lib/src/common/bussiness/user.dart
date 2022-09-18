@@ -139,7 +139,7 @@ class ClUser {
         .then((value) => results = value);
     if (results['isVerify']) {
       globals.userId = results['user_id'].toString();
-      globals.userName = results['user_name'];
+      globals.userName = results['user_nick'];
     }
 
     return results['isVerify'];

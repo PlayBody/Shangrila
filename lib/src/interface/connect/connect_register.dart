@@ -155,26 +155,25 @@ class _ConnectRegister extends State<ConnectRegister> {
     await ClUser().updateUserProfile(context, param);
     Navigator.pop(context);
 
-    globals.userName =
-        txtFirstNameController.text + ' ' + txtLastNameController.text;
+    globals.userName = txtAliasController.text;
     Navigator.pushNamed(context, '/Home');
   }
 
   bool isFormCheck() {
     bool isCheck = true;
-    if (txtFirstNameController.text == '') {
-      isCheck = false;
-      errFirstName = warningCommonInputRequire;
-    } else {
-      errFirstName = null;
-    }
+    // if (txtFirstNameController.text == '') {
+    //   isCheck = false;
+    //   errFirstName = warningCommonInputRequire;
+    // } else {
+    //   errFirstName = null;
+    // }
 
-    if (txtLastNameController.text == '') {
-      isCheck = false;
-      errLastName = warningCommonInputRequire;
-    } else {
-      errLastName = null;
-    }
+    // if (txtLastNameController.text == '') {
+    //   isCheck = false;
+    //   errLastName = warningCommonInputRequire;
+    // } else {
+    //   errLastName = null;
+    // }
 
     if (txtAliasController.text == '') {
       isCheck = false;
@@ -254,8 +253,8 @@ class _ConnectRegister extends State<ConnectRegister> {
               Text('', style: TextStyle(fontSize: 10, color: Colors.black45)),
           alignment: Alignment.topRight),
       _getShopTitle(),
-      _getContentTitle('氏名'),
-      _getNameInput(),
+      // _getContentTitle('氏名'),
+      // _getNameInput(),
       SizedBox(height: 12),
       _getContentTitle('ニックネーム'),
       _getAliasInput(),

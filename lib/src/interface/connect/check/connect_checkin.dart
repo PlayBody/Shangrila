@@ -2,6 +2,7 @@ import 'package:shangrila/src/common/bussiness/menus.dart';
 import 'package:shangrila/src/common/bussiness/organs.dart';
 import 'package:shangrila/src/common/bussiness/reserve.dart';
 import 'package:shangrila/src/common/bussiness/user.dart';
+import 'package:shangrila/src/common/const.dart';
 import 'package:shangrila/src/common/dialogs.dart';
 import 'package:shangrila/src/common/functions.dart';
 import 'package:shangrila/src/interface/component/button/default_buttons.dart';
@@ -60,7 +61,7 @@ class _ConnectCheckIn extends State<ConnectCheckIn> {
   }
 
   Future<void> checkIn() async {
-    if (selReserveId == null) {
+    if (organ!.isNoReserve != constCheckinTypeNone && selReserveId == null) {
       Dialogs().infoDialog(context, '予約内容を選択してください。');
       return;
     }
@@ -75,10 +76,10 @@ class _ConnectCheckIn extends State<ConnectCheckIn> {
       return;
     }
 
-    if (selectMenus.length < 1) {
-      Dialogs().infoDialog(context, 'メニューを選択してください。');
-      return;
-    }
+    // if (selectMenus.length < 1) {
+    //   Dialogs().infoDialog(context, 'メニューを選択してください。');
+    //   return;
+    // }
 
     bool conf = await Dialogs().confirmDialog(context, '入店しますか？');
     if (!conf) return;
@@ -90,7 +91,10 @@ class _ConnectCheckIn extends State<ConnectCheckIn> {
     }
     if (selReserveId == '0') selReserveId = '';
     bool isAddStamp = await ClReserve().enteringOrgan(
-        context, widget.organId, selReserveId!, selectMenus.join(','));
+        context,
+        widget.organId,
+        selReserveId == null ? '0' : selReserveId!,
+        selectMenus.isEmpty ? '' : selectMenus.join(','));
     if (isAddStamp) {
       await Dialogs().waitDialog(context, '1つのスタンプが追加されました。');
     }
@@ -148,7 +152,7 @@ class _ConnectCheckIn extends State<ConnectCheckIn> {
                         Funcs().dateFormatHHMMJP(e.toTime)))
               ])),
             )),
-        if (organ!.isNoReserve)
+        if (organ!.isNoReserve == constCheckinTypeBoth)
           GestureDetector(
             onTap: () => onTapReserve('0'),
             child: Container(
@@ -191,7 +195,8 @@ class _ConnectCheckIn extends State<ConnectCheckIn> {
                       ),
                     ],
                   )))),
-        if (!organ!.isNoReserve && reserves.length < 1)
+        if (organ!.isNoReserve == constCheckinTypeOnlyReserve &&
+            reserves.length < 1)
           Text(
             '予約データがありません。入店できません。',
             style: TextStyle(color: Colors.red),
@@ -205,9 +210,10 @@ class _ConnectCheckIn extends State<ConnectCheckIn> {
         ...tickets.map((e) => _getTicketRow(e)),
         // Expanded(child: Container()),
         SizedBox(height: 48),
-        Container(
-            padding: EdgeInsets.symmetric(horizontal: 60),
-            child: PrimaryButton(label: '入     店', tapFunc: () => checkIn())),
+        if (organ!.isNoReserve == constCheckinTypeNone || selReserveId != null)
+          Container(
+              padding: EdgeInsets.symmetric(horizontal: 60),
+              child: PrimaryButton(label: '入     店', tapFunc: () => checkIn())),
         SizedBox(height: 24),
       ],
     ));

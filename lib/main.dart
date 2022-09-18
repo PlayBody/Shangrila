@@ -102,8 +102,7 @@ class _AppInit extends State<AppInit> {
       bool? isLogin = prefs.getBool('is_shangrila_login');
 
       globals.userId = user.userId.toString();
-      globals.userName =
-          user.userFirstName + ' ' + user.userLastName.toString();
+      globals.userName = user.userNick;
       if (isLogin == null || isLogin == true)
         Navigator.pushNamed(context, '/Home');
       else
