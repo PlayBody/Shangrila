@@ -1,6 +1,7 @@
 library my_prj.globals;
 
 import 'package:shangrila/src/model/menumodel.dart';
+import 'package:shangrila/src/model/rankmodel.dart';
 
 // connect globals
 String userId = '';
@@ -21,3 +22,4 @@ String squareToken = '';
 
 int progressPercent = 0;
 bool isUpload = false;
+RankModel? userRank;

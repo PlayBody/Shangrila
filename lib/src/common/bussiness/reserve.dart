@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:shangrila/src/common/bussiness/stamps.dart';
+import 'package:shangrila/src/common/bussiness/user.dart';
 import 'package:shangrila/src/common/globals.dart' as globals;
 import 'package:shangrila/src/http/webservice.dart';
 import 'package:shangrila/src/model/order_model.dart';
@@ -10,6 +12,7 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 import '../apiendpoint.dart';
 import '../const.dart';
+import 'user.dart';
 
 class ClReserve {
   Future<List<TimeRegion>> loadReserveConditions(context, String organId,
@@ -168,6 +171,9 @@ class ClReserve {
       'menu_ids': menuIds,
       'user_id': globals.userId
     }).then((v) => {results = v});
+
+    if (results['isUpdateGrade'])
+      globals.userRank = await ClCoupon().loadRankData(context, globals.userId);
 
     return results['isStampAdd'];
   }

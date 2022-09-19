@@ -1,6 +1,7 @@
 import 'package:shangrila/src/common/bussiness/common.dart';
 import 'package:shangrila/src/common/bussiness/company.dart';
 import 'package:shangrila/src/common/bussiness/message.dart';
+import 'package:shangrila/src/common/bussiness/stamps.dart';
 import 'package:shangrila/src/common/bussiness/user.dart';
 import 'package:shangrila/src/common/const.dart';
 import 'package:shangrila/src/interface/connect/event/event.dart';
@@ -134,6 +135,8 @@ class _ConnectHome extends State<ConnectHome> {
     userName = user.userFirstName + ' ' + user.userLastName;
     userNo = user.userNo;
     userGrade = user.grade;
+
+    globals.userRank = await ClCoupon().loadRankData(context, globals.userId);
 
     if (userGrade == '1') userGrade = 'Advanced';
 
@@ -310,7 +313,11 @@ class _ConnectHome extends State<ConnectHome> {
                 'images/icon/icon_person.png', '会員番号 No.' + userNo),
             SizedBox(height: 4),
             _getUserNoRankContent(
-                'images/icon/icon_diamond.png', 'RANK : ' + userGrade),
+                'images/icon/icon_diamond.png',
+                'RANK : ' +
+                    (globals.userRank == null
+                        ? ''
+                        : globals.userRank!.rankName)),
           ],
         )),
         Expanded(child: Container()),
@@ -359,7 +366,7 @@ class _ConnectHome extends State<ConnectHome> {
         child: Row(
       children: [
         Text('会員証 : ', style: userLabelStyle),
-        Text(userName, style: userCommentStyle),
+        Text(globals.userName, style: userCommentStyle),
       ],
     ));
   }

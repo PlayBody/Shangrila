@@ -34,8 +34,8 @@ class Webservice {
         conf = await Dialogs().retryOrExit(context, errNetworkString);
       }
     } while (conf);
-    //return {};
-    exit(0);
+    return {};
+    //exit(0);
   }
 
   Future<void> callHttpMultiPart(

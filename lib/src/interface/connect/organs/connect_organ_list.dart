@@ -12,6 +12,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 //import 'package:location/location.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:shangrila/src/common/dialogs.dart';
 
 class ConnectOrganList extends StatefulWidget {
   const ConnectOrganList({Key? key}) : super(key: key);
@@ -41,11 +42,14 @@ class _ConnectOrganList extends State<ConnectOrganList> {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.deniedForever) {
-        return Future.error('Location Not Available');
-      }
     }
-    
+
+    if (permission == LocationPermission.denied ||
+        permission == LocationPermission.deniedForever) {
+      await Dialogs().waitDialog(context, '位置情報権限を設定してください。');
+      Navigator.pop(context);
+    }
+
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     LatLng initialPosition = LatLng(position.latitude, position.longitude);
@@ -117,7 +121,7 @@ class _ConnectOrganList extends State<ConnectOrganList> {
             return Container(
               child: Column(
                 children: [
-                  _getOrganSearch(),
+                  // _getOrganSearch(),
                   // _getMapView(),
                   Expanded(
                     child: SingleChildScrollView(
