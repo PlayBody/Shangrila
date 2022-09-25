@@ -50,7 +50,7 @@ android {
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
         minSdkVersion 24
         targetSdkVersion 31
-        versionCode 19
+        versionCode 21
         versionName '1.0.2'
     }
 

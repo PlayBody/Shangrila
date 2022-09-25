@@ -91,6 +91,9 @@ class _RegisterVerify extends State<RegisterVerify> {
                         child: Text(errorText,
                             style: TextStyle(color: Colors.red))),
                     SizedBox(height: 44),
+                    Text('セキュリティコード'),
+                    SizedBox(height: 24),
+                    _numberInput(),
                     TextButton(
                       autofocus: true,
                       child: Text(
@@ -99,8 +102,6 @@ class _RegisterVerify extends State<RegisterVerify> {
                       ),
                       onPressed: () => Navigator.pop(context),
                     ),
-                    SizedBox(height: 24),
-                    _numberInput()
                   ],
                 )),
               );

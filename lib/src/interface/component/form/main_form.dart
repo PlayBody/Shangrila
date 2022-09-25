@@ -16,7 +16,7 @@ class MainForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     globals.connectHeaerTitle = title;
-    return Container(
+    return SafeArea(child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
           image: DecorationImage(
@@ -31,6 +31,6 @@ class MainForm extends StatelessWidget {
               bgColor == null ? Colors.transparent : bgColor, //, //
           drawer: ConnectDrawer(),
           bottomNavigationBar: ConnectBottomBar(),
-        ));
+        )));
   }
 }
