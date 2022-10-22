@@ -7,6 +7,7 @@ class OrderModel {
   final String userId;
   final String tableTitle;
   final String staffName;
+  final String staffType;
   final String userName;
   final String userInputName;
   final String seatno;
@@ -27,6 +28,7 @@ class OrderModel {
     required this.organId,
     required this.tableTitle,
     required this.staffName,
+    required this.staffType,
     required this.userName,
     required this.userInputName,
     required this.status,
@@ -52,6 +54,9 @@ class OrderModel {
         organName: json['organ_name'] == null ? '' : json['organ_name'],
         organId: json['organ_id'] == null ? '' : json['organ_id'],
         staffName: json['staff_name'] == null ? '' : json['staff_name'],
+        staffType: json['select_staff_type'] == null
+            ? '0'
+            : json['select_staff_type'].toString(),
         userName: json['user_name'] == null ? '' : json['user_name'],
         userInputName:
             json['user_input_name'] == null ? '' : json['user_input_name'],

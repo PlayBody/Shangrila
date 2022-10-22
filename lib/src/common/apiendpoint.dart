@@ -62,3 +62,4 @@ String apiLoadMenuReviewUrl = apiBase + '/apireviews/loadMenuReview';
 String apiSaveMenuReviewUrl = apiBase + '/apireviews/saveMenuReview';
 
 String apiLoadCardListUrl = apiBase + '/apisquare/loadCardList';
+String apiRenderPrintLogo = apiBase + '/apiorgans/renderPrintLogo?organ_id=';

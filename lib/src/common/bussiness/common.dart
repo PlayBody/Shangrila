@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:shangrila/src/http/webservice.dart';
+import 'package:shangrila/src/model/home_menu_model.dart';
 
 import '../apiendpoint.dart';
 import '../const.dart';
@@ -20,16 +21,16 @@ class ClCommon {
     return results['isFile'];
   }
 
-  Future<List<String>> loadConnectHomeMenu(context) async {
+  Future<List<HomeMenuModel>> loadConnectHomeMenu(context) async {
     Map<dynamic, dynamic> results = {};
     String apiUrl = apiBase + '/api/loadConnectHomeMenuSetting';
     await Webservice().loadHttp(context, apiUrl,
         {'company_id': APPCOMANYID}).then((value) => results = value);
 
-    List<String> homeMenus = [];
+    List<HomeMenuModel> homeMenus = [];
     if (results['isLoad']) {
       for (var item in results['menus']) {
-        homeMenus.add(item['menu_key']);
+        homeMenus.add(HomeMenuModel.fromJson(item));
       }
     }
     return homeMenus;

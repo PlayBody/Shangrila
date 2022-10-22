@@ -34,10 +34,6 @@ class _ConnectLogin extends State<ConnectLogin> {
   }
 
   Future<List> loadUserInfo() async {
-    globals.userId = '';
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool('is_shangrila_login', false);
-
     return [];
   }
 
@@ -74,7 +70,7 @@ class _ConnectLogin extends State<ConnectLogin> {
           .updateDeviceToken(context, user.userId, globals.connectDeviceToken);
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setBool('is_shangrila_login', true);
+      prefs.setString('is_rirakukan_login_id', user.userId);
 
       Navigator.pushNamed(context, '/Home');
     } else {
@@ -85,7 +81,7 @@ class _ConnectLogin extends State<ConnectLogin> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-        onWillPop: () async => false,
+        onWillPop: () async => true,
         child: Container(
           child: Scaffold(
             backgroundColor: Colors.transparent,

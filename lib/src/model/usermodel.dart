@@ -43,7 +43,7 @@ class UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      userId: json['user_id'].toString(),
+      userId: json['user_no'] == null ? '' : json['user_id'].toString(),
       userNo: json['user_no'] == null ? '' : json['user_no'],
       qrCode: json['user_qrcode'] == null ? '1' : json['user_qrcode'],
       grade: json['user_grade'] == null ? '' : json['user_grade'],

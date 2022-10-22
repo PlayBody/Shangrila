@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:shangrila/src/common/apiendpoint.dart';
+import 'package:shangrila/src/common/bussiness/organs.dart';
 import 'package:shangrila/src/common/const.dart';
 import 'package:shangrila/src/http/webservice.dart';
 import 'package:shangrila/src/interface/component/form/main_form.dart';
@@ -11,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 //import 'package:location/location.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:shangrila/src/common/dialogs.dart';
 
@@ -85,6 +87,9 @@ class _ConnectOrganList extends State<ConnectOrganList> {
                 latlong = _currentlatLng;
               }));
         }
+
+        item['is_open'] =
+            await ClOrgan().isOpenOrgan(context, item['organ_id']);
         organs.add(OrganModel.fromJson(item));
       }
     }
@@ -108,6 +113,15 @@ class _ConnectOrganList extends State<ConnectOrganList> {
     double d = R * c;
 
     return d.floor();
+  }
+
+  Future<void> _launchInBrowser(String _url) async {
+    launchUrl(Uri.parse(_url));
+    // if (await canLaunch(_url)) {
+    //   await launch(_url);
+    // } else {
+    //   throw 'Could not launch $_url';
+    // }
   }
 
   @override
@@ -262,7 +276,7 @@ class _ConnectOrganList extends State<ConnectOrganList> {
               padding: EdgeInsets.only(top: 4),
               child: Row(children: [
                 Text(
-                  '営業中',
+                  item.isOpen ? '営業中' : '',
                   style: TextStyle(
                       fontSize: 14,
                       color: Color(0xffe15d92),
@@ -308,10 +322,9 @@ class _ConnectOrganList extends State<ConnectOrganList> {
                       visualDensity:
                           VisualDensity(vertical: -3, horizontal: 3)),
                   child: Text('twitter', style: TextStyle(fontSize: 12)),
-                  onPressed: () {
-                    callDialog(context,
-                        item.organPhone == null ? '' : item.organPhone!);
-                  },
+                  onPressed: () => _launchInBrowser(item.snsurl!),
+                  // callDialog(context,
+                  //     item.organPhone == null ? '' : item.organPhone!);
                 ),
               // TextButton(
               //     onPressed: () {

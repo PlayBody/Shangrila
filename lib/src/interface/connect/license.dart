@@ -5,6 +5,7 @@ import 'package:shangrila/src/common/const.dart';
 import 'package:shangrila/src/model/companymodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LicenseView extends StatefulWidget {
   const LicenseView({Key? key}) : super(key: key);
@@ -33,6 +34,15 @@ class _LicenseView extends State<LicenseView> {
   void onReadCheck(isread) {
     ischeck = isread;
     setState(() {});
+  }
+
+  Future<void> onTapAgree() async {
+    if (!ischeck) return;
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('is_rirakukan_agree_license', true);
+
+    Navigator.pushNamed(context, '/Home');
   }
 
   @override
@@ -118,9 +128,7 @@ class _LicenseView extends State<LicenseView> {
                       border: Border(top: buttonSide, right: buttonSide)),
                   child: TextButton(
                       child: Text('同意します。'),
-                      onPressed: ischeck
-                          ? () => Navigator.pushNamed(context, '/Register')
-                          : null))),
+                      onPressed: ischeck ? () => onTapAgree() : null))),
           Expanded(
               child: Container(
                   decoration: BoxDecoration(border: Border(top: buttonSide)),

@@ -1,10 +1,16 @@
 import 'dart:async';
 
+import 'package:maps_launcher/maps_launcher.dart';
 import 'package:shangrila/src/common/apiendpoint.dart';
+import 'package:shangrila/src/common/bussiness/organs.dart';
+import 'package:shangrila/src/common/dialogs.dart';
 import 'package:shangrila/src/http/webservice.dart';
 import 'package:shangrila/src/interface/component/form/main_form.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:shangrila/src/model/organ_special_time_model.dart';
+import 'package:shangrila/src/model/organ_time_model.dart';
+import 'package:shangrila/src/model/organmodel.dart';
 
 class ConnectOrganView extends StatefulWidget {
   final String organId;
@@ -16,16 +22,20 @@ class ConnectOrganView extends StatefulWidget {
 
 class _ConnectOrganView extends State<ConnectOrganView> {
   late Future<List> loadData;
+  OrganModel? organ;
+  List<OrganTimeModel> openTimes = [];
+  List<OrganSpecialTimeModel> openSpecialTimes = [];
+  bool isOpen = false;
 
-  String organName = '';
-  String? organImage;
-  String organAddress = '';
-  String phoneNumber = '';
-  String comment = '';
-  String activeStartTime = '';
-  String activeEndTime = '';
-  String access = '';
-  String parking = '';
+  // String organName = '';
+  // String? organImage;
+  // String organAddress = '';
+  // String phoneNumber = '';
+  // String comment = '';
+  // String activeStartTime = '';
+  // String activeEndTime = '';
+  // String access = '';
+  // String parking = '';
 
   @override
   void initState() {
@@ -34,44 +44,64 @@ class _ConnectOrganView extends State<ConnectOrganView> {
   }
 
   Future<List> loadOrganData() async {
-    Map<dynamic, dynamic> results = {};
-    await Webservice().loadHttp(context, apiLoadOrganInfo,
-        {'organ_id': widget.organId}).then((value) => results = value);
+    organ = await ClOrgan().loadOrganInfo(context, widget.organId);
+    if (organ == null) return [];
 
-    if (results['isLoad']) {
-      var organ = results['organ'];
-      organName = organ['organ_name'];
-      organImage = organ['image'];
-      organAddress = organ['address'] == null ? '' : organ['address'];
-      phoneNumber = organ['phone'] == null ? '' : organ['phone'];
-      comment = organ['comment'] == null ? '' : organ['comment'];
-      activeStartTime = organ['active_start_time'] == null
-          ? ''
-          : DateFormat('HH:mm').format(
-              DateTime.parse('2000-01-01 ' + organ['active_start_time']));
-      activeEndTime = organ['active_end_time'] == null
-          ? ''
-          : DateFormat('HH:mm')
-              .format(DateTime.parse('2000-01-01 ' + organ['active_end_time']));
+    openTimes = await ClOrgan().loadOrganTimes(context, widget.organId);
+    openSpecialTimes =
+        await ClOrgan().loadOrganSpecialTimes(context, widget.organId);
 
-      access = organ['access'] == null ? '' : organ['access'];
-      parking = organ['parking'] == null ? '' : organ['parking'];
-    }
+    isOpen = await ClOrgan().isOpenOrgan(context, widget.organId);
+    // Map<dynamic, dynamic> results = {};
+    // await Webservice().loadHttp(context, apiLoadOrganInfo,
+    //     {'organ_id': widget.organId}).then((value) => results = value);
+
+    // if (results['isLoad']) {
+    //   var organ = results['organ'];
+    //   organName = organ['organ_name'];
+    //   organImage = organ['image'];
+    //   organAddress = organ['address'] == null ? '' : organ['address'];
+    //   phoneNumber = organ['phone'] == null ? '' : organ['phone'];
+    //   comment = organ['comment'] == null ? '' : organ['comment'];
+    //   activeStartTime = organ['active_start_time'] == null
+    //       ? ''
+    //       : DateFormat('HH:mm').format(
+    //           DateTime.parse('2000-01-01 ' + organ['active_start_time']));
+    //   activeEndTime = organ['active_end_time'] == null
+    //       ? ''
+    //       : DateFormat('HH:mm')
+    //           .format(DateTime.parse('2000-01-01 ' + organ['active_end_time']));
+
+    //   access = organ['access'] == null ? '' : organ['access'];
+    //   parking = organ['parking'] == null ? '' : organ['parking'];
+    // }
 
     setState(() {});
     return [];
   }
 
+  void onTapGoogleMap() {
+    // MapsLauncher.launchQuery(
+    //     '1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA');
+    if (organ!.lat == null || organ!.lon == null) {
+      Dialogs().infoDialog(context, '店舗の位置が設定されていません。');
+      return;
+    }
+    MapsLauncher.launchCoordinates(
+        double.parse(organ!.lat!), double.parse(organ!.lon!));
+  }
+
   @override
   Widget build(BuildContext context) {
     return MainForm(
-      title: organName,
+      title: '',
       render: FutureBuilder<List>(
         future: loadData,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Container(
-              child: Column(
+              child: SingleChildScrollView(
+                  child: Column(
                 children: [
                   _getOrganItem(),
                   SizedBox(height: 60),
@@ -81,7 +111,7 @@ class _ConnectOrganView extends State<ConnectOrganView> {
                   _getParkContent(),
                   _getComment(),
                 ],
-              ),
+              )),
             );
           } else if (snapshot.hasError) {
             return Text("${snapshot.error}");
@@ -123,9 +153,9 @@ class _ConnectOrganView extends State<ConnectOrganView> {
     return Container(
       width: 140,
       height: 90,
-      child: organImage == null || organImage!.isEmpty
+      child: organ!.organImage == null || organ!.organImage!.isEmpty
           ? Image.network(organImageUrl + 'no_image.jpg')
-          : Image.network(organImageUrl + organImage!),
+          : Image.network(organImageUrl + organ!.organImage!),
     );
   }
 
@@ -134,21 +164,24 @@ class _ConnectOrganView extends State<ConnectOrganView> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Container(
-            padding: EdgeInsets.only(top: 4),
-            child: Text(
-              '営業中',
-              style: TextStyle(fontSize: 12),
+          if (isOpen)
+            Container(
+              padding: EdgeInsets.only(top: 4),
+              child: Text(
+                '営業中',
+                style: TextStyle(fontSize: 12),
+              ),
             ),
-          ),
           Container(
-              child: Text(organName,
+              child: Text(organ!.organName,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
-          Container(child: Text(organAddress, style: TextStyle(fontSize: 12))),
+          Container(
+              child: Text(organ!.organAddress ?? '',
+                  style: TextStyle(fontSize: 12))),
           Container(
               child: ElevatedButton(
             child: Text('地図アプリで見る'),
-            onPressed: () {},
+            onPressed: () => onTapGoogleMap(),
           )),
         ],
       ),
@@ -162,7 +195,7 @@ class _ConnectOrganView extends State<ConnectOrganView> {
         child: Row(
           children: [
             Container(width: labelWidth, child: Text('電話番号')),
-            Container(child: Text(phoneNumber))
+            Container(child: Text(organ!.organPhone ?? ''))
           ],
         ));
   }
@@ -179,19 +212,32 @@ class _ConnectOrganView extends State<ConnectOrganView> {
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Container(width: 60, child: Text('平日')),
-                    Container(
-                        child: Text(activeStartTime + '~' + activeEndTime))
-                  ],
-                ),
-                Row(
-                  children: [
-                    Container(width: 60, child: Text('土日祝')),
-                    Container(child: Text('10:00～21:00'))
-                  ],
-                ),
+                ...openTimes.map((e) => Row(
+                      children: [
+                        Container(
+                            margin: EdgeInsets.symmetric(vertical: 4),
+                            width: 80,
+                            child: (openTimes.indexOf(e) > 0 &&
+                                    e.weekday ==
+                                        openTimes[openTimes.indexOf(e) - 1]
+                                            .weekday)
+                                ? null
+                                : Text('${e.weekday}曜日')),
+                        Container(child: Text('${e.fromTime} ~ ${e.toTime}'))
+                      ],
+                    )),
+                ...openSpecialTimes.map((e) => Row(
+                      children: [
+                        Container(
+                            margin: EdgeInsets.symmetric(vertical: 4),
+                            width: 80,
+                            child:
+                                (Text(DateFormat('M月d日').format(e.fromTime)))),
+                        Container(
+                            child: Text(
+                                '${DateFormat('HH:mm').format(e.fromTime)} ~ ${DateFormat('HH:mm').format(e.toTime)}'))
+                      ],
+                    ))
               ],
             ))
           ],
@@ -205,7 +251,7 @@ class _ConnectOrganView extends State<ConnectOrganView> {
         child: Row(
           children: [
             Container(width: labelWidth, child: Text('アクセス')),
-            Container(child: Text(access))
+            Container(child: Text(organ!.access ?? ''))
           ],
         ));
   }
@@ -217,7 +263,7 @@ class _ConnectOrganView extends State<ConnectOrganView> {
         child: Row(
           children: [
             Container(width: labelWidth, child: Text('駐車場')),
-            Container(child: Text(parking))
+            Container(child: Text(organ!.parking ?? ''))
           ],
         ));
   }
@@ -230,7 +276,7 @@ class _ConnectOrganView extends State<ConnectOrganView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(width: labelWidth, child: Text('その他')),
-            Expanded(child: Text(comment))
+            Expanded(child: Text(organ!.organComment ?? ''))
           ],
         ));
   }

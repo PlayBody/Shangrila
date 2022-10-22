@@ -1,7 +1,8 @@
 library my_prj.globals;
 
 import 'package:shangrila/src/model/menumodel.dart';
-import 'package:shangrila/src/model/rankmodel.dart';
+
+import '../model/rankmodel.dart';
 
 // connect globals
 String userId = '';

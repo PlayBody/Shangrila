@@ -1,4 +1,5 @@
 import 'package:shangrila/src/common/apiendpoint.dart';
+import 'package:shangrila/src/common/bussiness/organs.dart';
 import 'package:shangrila/src/common/bussiness/stamps.dart';
 import 'package:shangrila/src/common/const.dart';
 import 'package:shangrila/src/common/functions.dart';
@@ -6,6 +7,7 @@ import 'package:shangrila/src/http/webservice.dart';
 import 'package:shangrila/src/interface/component/form/main_form.dart';
 import 'package:shangrila/src/interface/component/text/header_text.dart';
 import 'package:shangrila/src/model/couponmodel.dart';
+import 'package:shangrila/src/model/organmodel.dart';
 import 'package:shangrila/src/model/rankmodel.dart';
 import 'package:shangrila/src/model/stampmodel.dart';
 import 'package:flutter/material.dart';
@@ -156,13 +158,23 @@ class _ConnectCoupons extends State<ConnectCoupons> {
                                     height: 50,
                                     alignment: Alignment.center,
                                     child: i <= stamps.length
-                                        ? Icon(Icons.card_giftcard_outlined,
-                                            color: Colors.white, size: 32)
+                                        ? null
+
+                                        // Icon(Icons.card_giftcard_outlined,
+                                        //     color: Colors.white, size: 32)
                                         : Text(i.toString(),
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 24)),
                                     decoration: BoxDecoration(
+                                      image: (i <= stamps.length)
+                                          ? DecorationImage(
+                                              image: NetworkImage(
+                                                apiRenderPrintLogo +
+                                                    stamps[i - 1].organId,
+                                              ),
+                                              fit: BoxFit.fill)
+                                          : null,
                                       color: ((i <= stamps.length &&
                                                   stamps[i - 1]
                                                           .useflag
@@ -170,7 +182,7 @@ class _ConnectCoupons extends State<ConnectCoupons> {
                                                       '1') ||
                                               i > stamps.length)
                                           ? Colors.transparent
-                                          : Color(0xff464646),
+                                          : Color.fromARGB(255, 255, 255, 255),
                                       border:
                                           Border.all(color: Color(0xFFf3f3f3)),
                                       borderRadius: BorderRadius.circular(60),

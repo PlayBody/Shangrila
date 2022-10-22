@@ -94,19 +94,21 @@ class _AppInit extends State<AppInit> {
     if (deviceToken == null) deviceToken = 'LocalDevice';
     globals.connectDeviceToken = deviceToken!; // == null ? '' : deviceToken!;
 
-    UserModel? user = await ClUser().getUserModel(
-        context, {'user_device_token': deviceToken, 'company_id': APPCOMANYID});
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String saveUserId = prefs.getString('is_rirakukan_login_id') ?? '';
 
-    if (user != null) {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      bool? isLogin = prefs.getBool('is_shangrila_login');
+    if (saveUserId != '') {
+      UserModel user = await ClUser().getUserFromId(context, saveUserId);
+      if (user.userId != '') {
+        globals.userId = user.userId.toString();
+        globals.userName =
+            user.userFirstName + ' ' + user.userLastName.toString();
+      }
+    }
 
-      globals.userId = user.userId.toString();
-      globals.userName = user.userNick;
-      if (isLogin == null || isLogin == true)
-        Navigator.pushNamed(context, '/Home');
-      else
-        Navigator.pushNamed(context, '/Login');
+    bool? isAgreeLicense = prefs.getBool('is_rirakukan_agree_license') ?? false;
+    if (isAgreeLicense) {
+      Navigator.pushNamed(context, '/Home');
     } else {
       Navigator.pushNamed(context, '/License');
     }

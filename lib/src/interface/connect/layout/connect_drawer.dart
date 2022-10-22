@@ -3,10 +3,12 @@
 // BSD-style license that can be found in the LICENSE file.
 // import 'package:crm_app/interface/reginfo.dart';
 import 'package:flutter/material.dart';
+import 'package:shangrila/src/common/functions.dart';
 
 import '../connect_home.dart';
 import '../connect_login.dart';
 import '../connect_setting.dart';
+import '../../../common/globals.dart' as globals;
 // Set up a mock HTTP client.
 
 class ConnectDrawer extends StatelessWidget {
@@ -39,20 +41,24 @@ class ConnectDrawer extends StatelessWidget {
           //         Navigator.push(context, MaterialPageRoute(builder: (_) {
           //           return ConnectRegister();
           //         }))),
-          createDrawerBodyItem(
-              icon: Icons.settings,
-              text: '設定',
-              onTap: () =>
-                  Navigator.push(context, MaterialPageRoute(builder: (_) {
-                    return ConnectSetting();
-                  }))),
-          createDrawerBodyItem(
-              icon: Icons.settings,
-              text: 'ログアウト',
-              onTap: () =>
-                  Navigator.push(context, MaterialPageRoute(builder: (_) {
-                    return ConnectLogin();
-                  }))),
+          if (globals.userId != '')
+            createDrawerBodyItem(
+                icon: Icons.settings,
+                text: '設定',
+                onTap: () =>
+                    Navigator.push(context, MaterialPageRoute(builder: (_) {
+                      return ConnectSetting();
+                    }))),
+          if (globals.userId == '')
+            createDrawerBodyItem(
+                icon: Icons.settings,
+                text: 'ログイン',
+                onTap: () => Navigator.pushNamed(context, '/Login')),
+          if (globals.userId != '')
+            createDrawerBodyItem(
+                icon: Icons.settings,
+                text: 'ログアウト',
+                onTap: () => Funcs().logout(context)),
         ],
       ),
     );

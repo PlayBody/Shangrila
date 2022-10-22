@@ -10,6 +10,11 @@ class OrganModel {
   final String? distance;
   final String? snsurl;
   final int checkTicketConsumtion;
+  final String? lat;
+  final String? lon;
+  final String? access;
+  final String? parking;
+  final bool isOpen;
 
   const OrganModel(
       {required this.organId,
@@ -22,7 +27,12 @@ class OrganModel {
       this.organZipCode,
       this.distance,
       this.snsurl,
-      required this.checkTicketConsumtion});
+      this.lat,
+      this.lon,
+      this.access,
+      this.parking,
+      required this.checkTicketConsumtion,
+      required this.isOpen});
 
   factory OrganModel.fromJson(Map<String, dynamic> json) {
     return OrganModel(
@@ -37,10 +47,15 @@ class OrganModel {
         organImage: json['image'],
         organZipCode: json['zip_code'],
         snsurl: json['sns_url'],
+        lat: json['lat'],
+        lon: json['lon'],
+        access: json['access'],
+        parking: json['parking'],
         distance: json['distance'].toString(),
         checkTicketConsumtion: (json['checkin_ticket_consumption'] == null ||
                 json['checkin_ticket_consumption'] == '')
             ? 0
-            : int.parse(json['checkin_ticket_consumption']));
+            : int.parse(json['checkin_ticket_consumption']),
+        isOpen: json['is_open'] ?? false);
   }
 }

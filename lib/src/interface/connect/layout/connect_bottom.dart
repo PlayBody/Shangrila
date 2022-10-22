@@ -39,7 +39,7 @@ class ConnectBottomBar extends StatelessWidget {
                   }
                 : () {},
           ),
-          if (globals.isCart)
+          if (globals.isCart && globals.userId != '')
             ConnectBottomItem(
               icon: Image.asset(
                 'images/icon/icon_footer_cart.png',

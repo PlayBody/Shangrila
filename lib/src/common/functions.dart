@@ -1,12 +1,18 @@
-class Funcs {
-  // void logout(BuildContext context) {
-  //   globals.isLogin = false;
-  //   globals.staffId = '';
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-  //   // Navigator.push(context, MaterialPageRoute(builder: (context) {
-  //   //   return Login();
-  //   // }));
-  // }
+import '../common/globals.dart' as globals;
+
+class Funcs {
+  Future<void> logout(BuildContext context) async {
+    globals.userId = '';
+    globals.userName = '';
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('is_rirakukan_login_id', '');
+
+    Navigator.pushNamed(context, '/Home');
+  }
 
   // bool orderInputListAdd(BuildContext context, MenuReserveModel item) {
   //   if (globals.orderReserveMenus.length >= 10) {
