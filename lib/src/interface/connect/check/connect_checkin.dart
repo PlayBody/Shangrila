@@ -90,6 +90,7 @@ class _ConnectCheckIn extends State<ConnectCheckIn> {
           .usingTicketWithCheckin(context, item.id, item.cartCount.toString());
     }
     if (selReserveId == '0') selReserveId = '';
+
     bool isAddStamp = await ClReserve().enteringOrgan(
         context,
         widget.organId,

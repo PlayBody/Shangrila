@@ -95,18 +95,17 @@ class _AppInit extends State<AppInit> {
     globals.connectDeviceToken = deviceToken!; // == null ? '' : deviceToken!;
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String saveUserId = prefs.getString('is_rirakukan_login_id') ?? '';
+    String saveUserId = prefs.getString('is_shangrila_login_id') ?? '';
 
     if (saveUserId != '') {
       UserModel user = await ClUser().getUserFromId(context, saveUserId);
       if (user.userId != '') {
         globals.userId = user.userId.toString();
-        globals.userName =
-            user.userFirstName + ' ' + user.userLastName.toString();
+        globals.userName = user.userNick;
       }
     }
 
-    bool? isAgreeLicense = prefs.getBool('is_rirakukan_agree_license') ?? false;
+    bool? isAgreeLicense = prefs.getBool('is_shangrila_agree_license') ?? false;
     if (isAgreeLicense) {
       Navigator.pushNamed(context, '/Home');
     } else {

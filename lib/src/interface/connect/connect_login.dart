@@ -70,7 +70,7 @@ class _ConnectLogin extends State<ConnectLogin> {
           .updateDeviceToken(context, user.userId, globals.connectDeviceToken);
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('is_rirakukan_login_id', user.userId);
+      prefs.setString('is_shangrila_login_id', user.userId);
 
       Navigator.pushNamed(context, '/Home');
     } else {
@@ -124,6 +124,15 @@ class _ConnectLogin extends State<ConnectLogin> {
                           ),
                           onPressed: () =>
                               Navigator.pushNamed(context, '/Register'),
+                        ),
+                        TextButton(
+                          child: Text(
+                            'ホーム画面へ',
+                            style:
+                                TextStyle(color: Colors.black.withOpacity(0.5)),
+                          ),
+                          onPressed: () =>
+                              Navigator.pushNamed(context, '/Home'),
                         )
                       ],
                     )),

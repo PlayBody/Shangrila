@@ -27,7 +27,7 @@ class ClUser {
 
     Map<dynamic, dynamic> results = {};
     await Webservice().loadHttp(context, apiUrl, {
-      'user_id': globals.userId,
+      'user_id': userId,
     }).then((v) => {results = v});
 
     return UserModel.fromJson(results['user']);

@@ -57,7 +57,7 @@ class _RegisterVerify extends State<RegisterVerify> {
     Navigator.pop(context);
     if (isRegister) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('is_rirakukan_login_id', param['user_id']);
+      prefs.setString('is_shangrila_login_id', param['user_id']);
 
       Navigator.pushNamed(context, '/Home');
       return;

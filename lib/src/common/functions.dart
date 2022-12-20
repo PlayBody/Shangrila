@@ -9,7 +9,7 @@ class Funcs {
     globals.userName = '';
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('is_rirakukan_login_id', '');
+    prefs.setString('is_shangrila_login_id', '');
 
     Navigator.pushNamed(context, '/Home');
   }

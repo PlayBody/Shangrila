@@ -59,9 +59,11 @@ class ConnectBottomBar extends StatelessWidget {
               width: 24,
             ),
             label: '設定',
-            tap: () => Navigator.push(context, MaterialPageRoute(builder: (_) {
-              return ConnectSetting();
-            })),
+            tap: globals.userId == ''
+                ? () => Navigator.pushNamed(context, '/Login')
+                : () => Navigator.push(context, MaterialPageRoute(builder: (_) {
+                      return ConnectSetting();
+                    })),
           ),
           Container(width: 20),
         ],

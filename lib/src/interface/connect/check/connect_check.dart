@@ -144,6 +144,7 @@ class _ConnectCheck extends State<ConnectCheck> {
     String _format = describeEnum(scanData.format);
     String? _code = scanData.code;
     String err = '';
+    print(_code);
     if (_format == 'qrcode') {
       if (!isQrCode(_code)) {
         err = "不正確なQRコードです。";

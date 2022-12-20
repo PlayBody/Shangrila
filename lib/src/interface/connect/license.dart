@@ -40,7 +40,7 @@ class _LicenseView extends State<LicenseView> {
     if (!ischeck) return;
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool('is_rirakukan_agree_license', true);
+    prefs.setBool('is_shangrila_agree_license', true);
 
     Navigator.pushNamed(context, '/Home');
   }
